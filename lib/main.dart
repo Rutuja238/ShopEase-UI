@@ -1,96 +1,15 @@
-// import 'package:flutter/material.dart';
-// import 'screens/home_screen.dart';
-
-// void main() {
-//   runApp(GroomingApp());
-// }
-
-// class GroomingApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       home: MainScreen(),
-//     );
-//   }
-// }
-
-// class MainScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context){
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Select Gromming Type"),
-//       ),
-//       body: Center(
-//         child:Column(
-//           children: [
-//             ElevatedButton(onPressed: (){
-//               Navigator.push(
-//                 context, 
-//                 MaterialPageRoute(builder:(context) => MainScreen(),
-//               ),
-//               );
-
-//             }, 
-//             child: Text("Men's Gromming"),
-//             ),
-//              ElevatedButton(
-//               onPressed: () {
-//                 Navigator.push(
-//                   context,
-//                   MaterialPageRoute(
-//                     builder: (context) => MainScreen(),
-//                   ),
-//                 );
-//               },
-//               child: Text("Women's Grooming"),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// void checkAsset() async {
-//   try {
-//     await rootBundle.load('assets/images/test.jpg');
-//     print('✅ Asset found!');
-//   } catch (e) {
-//     print('❌ Asset not found: $e');
-//   }
-// }
-
-// void main() {
-//   checkAsset();
-//   runApp(GroomingApp());
-// }
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized(); // Ensures binding is initialized
-  checkAsset(); // Run asset check after initialization
   runApp(GroomingApp());
-}
-
-void checkAsset() async {
-  try {
-    await rootBundle.load('assets/test.jpg');
-    print('✅ Asset found!');
-  } catch (e) {
-    print('❌ Asset not found: $e');
-  }
 }
 
 class GroomingApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MainScreen(),
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, home: MainScreen());
   }
 }
 
@@ -98,9 +17,7 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Select Gromming Type"),
-      ),
+      appBar: AppBar(title: Text("Select Gromming Type")),
       body: Column(
         // child: Container(
         //   width: double.infinity, // Full width
@@ -113,18 +30,54 @@ class MainScreen extends StatelessWidget {
         //   ),
         // ),
         crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Full-width banner image
-            SizedBox(
-              width: double.infinity, // Full width
-              child: Image.asset(
-                "assets/images/banner.jpg", // Change to your actual asset path
-                fit: BoxFit.cover, // Ensures the image fills the width properly
+        children: [
+          // Full-width banner image
+          SizedBox(
+            width: double.infinity, // Full width
+            child: Image.asset(
+              "assets/images/banner.jpg", // Change to your actual asset path
+              fit: BoxFit.cover, // Ensures the image fills the width properly
+            ),
+          ),
+          SizedBox(height: 10), // Adjust spacing if needed
+          // Search Bar
+          TextField(
+            decoration: InputDecoration(
+              hintText: "Search for services",
+              prefixIcon: Icon(Icons.search),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
             ),
-            SizedBox(height: 10), // Adjust spacing if needed
-            // Add other widgets below the banner
-          ],
+          ),
+
+          // Add other widgets below the banner
+          // SizedBox(height: 5), // Spacing
+
+          // Gender Selection Buttons
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Handle Men button tap
+                  },
+                  child: Text("Men"),
+                ),
+              ),
+              SizedBox(width: 10), // Spacing between buttons
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Handle Women button tap
+                  },
+                  child: Text("Women"),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
